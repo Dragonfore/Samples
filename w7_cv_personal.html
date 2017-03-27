@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        /*
+        *   Layout
+        */
+        
+        div#name {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 135px;
+            text-align: center;
+            background-color: LightYellow;
+
+            border: 1px solid Black;
+            border-radius: 10px;
+            box-shadow: 10px 10px 5px Grey;
+        }
+        
+        div#sections {
+            position: fixed;
+            top: 150px;
+            left: 0px;
+            width: 100%;
+            height: calc(100vh - 185px);
+            overflow-y: auto;
+            background-color: LightBlue;
+        }
+        
+        div#footer {
+            position: fixed;
+            width: 150px;
+            height: 20px;
+            left: calc(50vw - 75px);
+            bottom: 5px;
+        }
+        
+        div#name img {
+            width:50px;
+            height:50px;
+        }
+        
+        /*
+        *   Tabs for sections
+        */
+        
+        /* tabs */
+        div#sections {
+            position: relative;  /* to give tabs good positions */
+            text-align: center;  /* in order to display tabs at center */
+        }
+        
+        /* tab - name and content */
+        div#sections > div {
+            display: inline;  /* in order to display tabs side by side */
+        }
+        
+        /* tab name */
+        div#sections > div > a {
+            position: relative;
+            top:20px;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: LightYellow;
+            text-decoration: none;  /* in order to delete the underline */
+        }
+        
+        /* tab content */
+        div#sections > div > div {
+            text-align: left;  /* in order to display from the left, not center */
+            display: none;  /* initially not displayed */
+            position: absolute;
+            top: 100px;
+            left: 37%
+        }
+        
+        /* when the mouse moves over a tab name */
+        div#sections > div > a:hover {
+            background-color: LightGreen;
+        }
+        
+        /* when a tab name is clicked */
+        div#sections > div:target > a {  /* different background-color */
+            background-color: Aquamarine;
+        }
+        div#sections > div:target > div {  /* display the content */
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='name'>
+        <h1>Matthew Mackay <img src="FacebookProfile.jpg" alt="Profile Picture" id="profilePicture"></img></h1>
+    </div>
+
+    <div id='sections'>  <!-- tabs -->
+        <div id='contact-information'>  <!-- a tab: name and content -->
+            <a href='#contact-information'>Contact Information</a>  <!-- tab name -->
+            <div>  <!-- tab content -->
+                <ul style='font-style:italic'>
+                    <li><i>Address: 950 McGill Road, Kamloops B.C, Canada</i></li>
+                    <li><i>Personal e-mail: matthewmackay26@hotmail.com</i></li>
+                    <li><i>School e-mail: mackaym16@mytru.ca</i></li>
+                    <li><i>Phone: (250)328-9569</i></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id='education'>  <!-- a tab: name and content -->
+            <a href='#education'>Education</a>  <!-- tab name -->
+            <div>  <!-- tab content -->
+                <ul>
+                        <li><b>University: Thompson Rivers University, Kamloops, B.C, 2016-Current, 4.13 GPA</b></li>
+                        <a title="Link to TRU's Website" href="http://www.tru.ca/" target="_blank" id="truPicture"><img src="data:image/png;base64,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"  alt="TRU"/></a>
+                        <li>High School: Princess Margaret Secondary School, Penticton, B.C, 2012-2016, <b>Top Academic Student Grade 11 & 12</b></li>
+                        <li>Middle School: Skaha Lake Middle School</li>
+                        <li>Elementary School: Concordia Lutheran Elementary School</li>
+                    </ul>
+            </div>
+        </div>
+        
+        <div id='work-experience'>  <!-- a tab: name and content -->
+            <a href='#work-experience'>Work Experiences</a>
+            <div>
+                <ul>
+                    <li>January 2016 ~ Present: TRU Residence and Conference Center, Social Coordinator</li>
+                    <li>May 2015 ~ Current: Real Canadian Superstore, GM Replenishment Clerk </li>
+                    <li>October 2016 ~ January 2017: President of Residence Council</li>
+                    <li>June 2013 ~ November 2013: Bean to the Beach, Baker & Sous Chef</li>
+                    <li>2003 ~ 2012: Yardwork for grandparents</li>
+                    <li>2010 ~ 2011: Accounting for my father</li>
+                    <li>September 2011 ~ October 2012: Accounting for Fairview Liquor Store</li>
+                    <li>September 2012 ~ March 2013, September 2014 ~ September 2016: Princess Margaret Tech Team, Stage Lighting & Sound</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id='skills'>  <!-- a tab: name and content -->
+            <a href='#skills'>Skills</a>
+            <div>
+                <table border='1' style='border-collapse: collapse'>
+                    <caption>Skills</caption>
+                    <tr><th>Language</th><th>Level</th><th>Years</th></tr>
+                    <tr><td>Java</td><td>Amateur</td><td>1</td></tr>
+                    <tr><td>JavaScript</td><td>Intermediate</td><td>4</td></tr>
+                    <tr><td>HTML</td><td>Intermediate</td><td>4</td></tr>
+                    <tr><td>CSS</td><td>Amateur</td><td>4</td></tr>
+                    <tr><td>Piano RCM</td><td>Grade 9</td><td>7</td></tr>
+                    <tr><td>Music Theory</td><td>Advanced RCM</td><td>6</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div id='footer'>
+        Copyright &copy; <a href='//cs.tru.ca'>cs.tru.ca</a>
+    </div>
+</body>
+</html>
